@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
-import { List, Badge } from '../index'
+import { List, Badge, jsServer } from '../index'
 
 import closeSvg from '../../assets/img/close.svg'
 
@@ -29,7 +29,7 @@ const AddList = ({ colors, onAdd }) => {
     if (inputValue.trim() !== '') {
       setIsLoading(true)
       axios
-        .post('http://localhost:3001/lists', {
+        .post(`${jsServer}lists`, {
           name: inputValue,
           colorId: selectedColor
         })

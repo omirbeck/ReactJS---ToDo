@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from 'classnames';
 import axios from 'axios'
+import {jsServer} from '../index'
 
 import Badge from '../Badge/Badge'
 
@@ -14,7 +15,7 @@ const List = ({ items, isRemovable, onClick, onRemove, onClickItem, activeItem }
     if (window.confirm('Вы действительно хотите удалить список?')) {
 
       axios
-        .delete('http://localhost:3001/lists/' + item.id)
+        .delete(`${jsServer}` + item.id)
         .then(onRemove(item.id))
     }
   }

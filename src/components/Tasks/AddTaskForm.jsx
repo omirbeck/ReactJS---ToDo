@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import {jsServer} from '../index'
 
 import addSvg from "../../assets/img/add.svg";
 
@@ -21,7 +22,7 @@ const AddTaskForm = ({list, onAddTask}) => {
     };
     setIsLoading(true)
     axios
-    .post('http://localhost:3001/tasks', obj)
+    .post(`${jsServer}tasks`, obj)
     .then(
       ({ data }) => {
         onAddTask(list.id, data);

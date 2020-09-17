@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Route, useHistory, useLocation } from 'react-router-dom';
 
-import { List, AddList, Tasks } from "./components";
+import { List, AddList, Tasks, jsServer } from "./components";
 
 function App() {
   const [lists, setLists] = useState(null);
@@ -13,11 +13,11 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/lists?_expand=color&_embed=tasks")
+      .get(`${jsServer}lists?_expand=color&_embed=tasks`)
       .then(({ data }) => {
         setLists(data);
       });
-    axios.get("http://localhost:3001/colors").then(({ data }) => {
+    axios.get(`${jsServer}colors`).then(({ data }) => {
       setColors(data);
     });
   }, []);

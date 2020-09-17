@@ -2,6 +2,7 @@ import React from "react";
 import axios from 'axios'
 import editSvg from "../../assets/img/edit.svg";
 import { Link } from 'react-router-dom'
+import { jsServer } from '../index'
 
 import "./Tasks.scss";
 import AddTaskForm from "./AddTaskForm";
@@ -13,7 +14,7 @@ const Tasks = ({ list, onEditTitle, onAddTask, onEditTask, onRemoveTask, onCompl
     if (newTitle) {
       onEditTitle(list.id, newTitle)
       axios
-        .patch('http://localhost:3001/lists/' + list.id, {
+        .patch(`${jsServer}lists/` + list.id, {
           name: newTitle
         })
         .catch(() => alert('Ну удалось обновить название списка'));
