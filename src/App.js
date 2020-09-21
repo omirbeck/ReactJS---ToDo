@@ -16,10 +16,13 @@ function App() {
       .get(`${jsServer}lists?_expand=color&_embed=tasks`)
       .then(({ data }) => {
         setLists(data);
+      })
+
+    axios
+      .get(`${jsServer}colors`)
+      .then(({ data }) => {
+        setColors(data);
       });
-    axios.get(`${jsServer}colors`).then(({ data }) => {
-      setColors(data);
-    });
   }, []);
 
   const onAddList = (obj) => {
@@ -62,7 +65,7 @@ function App() {
 
     if (newTaskText) {
       axios
-        .patch('http://localhost:3001/tasks/' + taskObj.id, {
+        .patch(`${jsServer}tasks/${taskObj.id}`, {
           text: newTaskText
         })
         .catch(() => alert('Ну удалось обновить название таска'));
@@ -80,7 +83,7 @@ function App() {
       setLists(newList)
 
       axios
-        .delete('http://localhost:3001/tasks/' + taskId)
+        .delete(`${jsServer}tasks/${taskId}`)
         .catch(() => {
           alert('Ну удалось удалить задачу')
         })
@@ -104,10 +107,10 @@ function App() {
     setLists(newList)
 
     axios
-      .patch('http://localhost:3001/tasks/' + taskId, {
+      .patch(`${jsServer}tasks/${taskId}`, {
         completed: completed
       })
-      .catch(() => alert('Ну удалось обновить название таска'));
+      .catch(() => alert('Ну удалось обновить комплитед'));
 
   }
 

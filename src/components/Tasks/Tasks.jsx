@@ -14,7 +14,7 @@ const Tasks = ({ list, onEditTitle, onAddTask, onEditTask, onRemoveTask, onCompl
     if (newTitle) {
       onEditTitle(list.id, newTitle)
       axios
-        .patch(`${jsServer}lists/` + list.id, {
+        .patch(`${jsServer}lists/${list.id}`, {
           name: newTitle
         })
         .catch(() => alert('Ну удалось обновить название списка'));

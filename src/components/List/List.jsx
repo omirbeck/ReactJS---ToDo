@@ -15,7 +15,7 @@ const List = ({ items, isRemovable, onClick, onRemove, onClickItem, activeItem }
     if (window.confirm('Вы действительно хотите удалить список?')) {
 
       axios
-        .delete(`${jsServer}` + item.id)
+        .delete(`${jsServer}lists/${item.id}`)
         .then(onRemove(item.id))
     }
   }
